@@ -6,6 +6,7 @@ import DataBinding from './DataBinding/DataBinding';
 import HandleEvent from './HandleEvent/HandleEvent';
 import StyleWithJSX from './StyleWithJSX/StyleWithJSX';
 import StateDemo from './StateDemo/StateDemo/StateDemo';
+import RenderWithMap from './RenderWithMap/RenderWithMap';
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
       {/* <DataBinding /> */}
       {/* <HandleEvent /> */}
       {/* <StyleWithJSX /> */}
-      <StateDemo />
+      {/* <StateDemo /> */}
+      <RenderWithMap />
     </div>
   );
 }
