@@ -7,6 +7,8 @@ import HandleEvent from './HandleEvent/HandleEvent';
 import StyleWithJSX from './StyleWithJSX/StyleWithJSX';
 import StateDemo from './StateDemo/StateDemo/StateDemo';
 import RenderWithMap from './RenderWithMap/RenderWithMap';
+import LayoutFilm from './RenderWithMap/LayoutFilm';
+import LayoutFilms_SuaBai from './RenderWithMap/LayoutFilms_SuaBai';
 
 
 function App() {
@@ -17,7 +19,9 @@ function App() {
       {/* <HandleEvent /> */}
       {/* <StyleWithJSX /> */}
       {/* <StateDemo /> */}
-      <RenderWithMap />
+      {/* <RenderWithMap /> */}
+      {/* <LayoutFilm /> */}
+      <LayoutFilms_SuaBai />
     </div>
   );
 }
