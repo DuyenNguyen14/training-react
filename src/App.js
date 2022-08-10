@@ -9,6 +9,10 @@ import StateDemo from './StateDemo/StateDemo/StateDemo';
 import RenderWithMap from './RenderWithMap/RenderWithMap';
 import LayoutFilm from './RenderWithMap/LayoutFilm';
 import LayoutFilms_SuaBai from './RenderWithMap/LayoutFilms_SuaBai';
+import DemoProps from './Props/DemoProps/DemoProps';
+import ShoesShop from './Props/ShoesShops/ShoesShop';
+import DemoXemChiTiet from './Props/DemoXemChiTiet/DemoXemChiTiet';
+import ExerciseCarStore from './Props/ExersiceCarStore/ExerciseCarStore';
 
 
 function App() {
@@ -21,7 +25,11 @@ function App() {
       {/* <StateDemo /> */}
       {/* <RenderWithMap /> */}
       {/* <LayoutFilm /> */}
-      <LayoutFilms_SuaBai />
+      {/* <LayoutFilms_SuaBai /> */}
+      {/* <DemoProps /> */}
+      {/* <ShoesShop /> */}
+      {/* <DemoXemChiTiet /> */}
+      <ExerciseCarStore />
     </div>
   );
 }
