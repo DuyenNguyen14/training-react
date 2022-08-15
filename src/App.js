@@ -1,35 +1,38 @@
+import { NavLink, Outlet } from 'react-router-dom';
 import './App.css';
-import DemoFunctionComp from './components/DemoComponent/DemoFunctionComp';
-import DemoClassComp from './components/DemoComponent/DemoClassComp';
-import BaiTapLayout from './components/BaiTapLayout/BaiTapLayout';
-import DataBinding from './DataBinding/DataBinding';
-import HandleEvent from './HandleEvent/HandleEvent';
-import StyleWithJSX from './StyleWithJSX/StyleWithJSX';
-import StateDemo from './StateDemo/StateDemo/StateDemo';
-import RenderWithMap from './RenderWithMap/RenderWithMap';
-import LayoutFilm from './RenderWithMap/LayoutFilm';
-import LayoutFilms_SuaBai from './RenderWithMap/LayoutFilms_SuaBai';
-import DemoProps from './Props/DemoProps/DemoProps';
-import ShoesShop from './Props/ShoesShops/ShoesShop';
-import DemoXemChiTiet from './Props/DemoXemChiTiet/DemoXemChiTiet';
-import ExerciseCarStore from './Props/ExersiceCarStore/ExerciseCarStore';
 
 
 function App() {
   return (
     <div className="App">
-      {/* <BaiTapLayout /> */}
-      {/* <DataBinding /> */}
-      {/* <HandleEvent /> */}
-      {/* <StyleWithJSX /> */}
-      {/* <StateDemo /> */}
-      {/* <RenderWithMap /> */}
-      {/* <LayoutFilm /> */}
-      {/* <LayoutFilms_SuaBai /> */}
-      {/* <DemoProps /> */}
-      {/* <ShoesShop /> */}
-      {/* <DemoXemChiTiet /> */}
-      <ExerciseCarStore />
+
+      {/* các link con nằm trong thẻ <Outlet /> khi load ra đều sẽ được thừa hưởng thẻ navbar ở <App /> mà không cần phải định nghĩa lại */}
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div className='container'>
+          <NavLink className="navbar-brand" to="/">Cybersoft</NavLink>
+          <button className="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" />
+          <div className="collapse navbar-collapse" id="collapsibleNavId">
+            <ul className="navbar-nav me-auto mt-2 mt-lg-0">
+              <li className="nav-item active">
+                <NavLink style={({ isActive }) => isActive ? { borderRadius: '5px' } : {}} className={({ isActive }) => isActive ? 'nav-link bg-light text-dark' : 'nav-link'} to="/">Home <span className="visually-hidden">(current)</span></NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink style={({ isActive }) => isActive ? { borderRadius: '5px' } : {}} className={({ isActive }) => isActive ? 'nav-link bg-light text-dark' : 'nav-link'} to="/about">About</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink style={({ isActive }) => isActive ? { borderRadius: '5px' } : {}} className={({ isActive }) => isActive ? 'nav-link bg-light text-dark' : 'nav-link'} to="/contact">Contact</NavLink>
+              </li>ˇ
+            </ul>
+            <form className="d-flex my-2 my-lg-0">
+              <input className="form-control me-sm-2" type="text" placeholder="Search" />
+              <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      {/* Outlet là vị trí component sẽ được load ở link con */}
+      <Outlet />
     </div>
   );
 }
