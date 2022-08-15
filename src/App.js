@@ -21,7 +21,10 @@ function App() {
               </li>
               <li className="nav-item">
                 <NavLink style={({ isActive }) => isActive ? { borderRadius: '5px' } : {}} className={({ isActive }) => isActive ? 'nav-link bg-light text-dark' : 'nav-link'} to="/contact">Contact</NavLink>
-              </li>ˇ
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/reactform">ReactForm</NavLink>
+              </li>
             </ul>
             <form className="d-flex my-2 my-lg-0">
               <input className="form-control me-sm-2" type="text" placeholder="Search" />
