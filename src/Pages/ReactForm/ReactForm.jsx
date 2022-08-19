@@ -60,4 +60,8 @@ export default class ReactForm extends Component {
             </div>
         )
     }
+
+    componentDidMount() {
+        this.getLocalStorage();
+    }
 }

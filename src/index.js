@@ -10,6 +10,7 @@ import Home from './Pages/Home/Home';
 import About from './Pages/About/About';
 import ReactForm from './Pages/ReactForm/ReactForm';
 import Page404 from './Pages/Page404/Page404';
+import ReactLifeCycle from './Pages/ReactLifeCycle/ReactLifeCycle';
 
 
 // jsx: javascript extension
@@ -31,6 +32,7 @@ root.render(
         <Route path='contact' element={<Contact />}></Route>
         <Route path='about' element={<About />}></Route>
         <Route path='reactform' element={<ReactForm />}></Route>
+        <Route path='lifecycle' element={<ReactLifeCycle />}></Route>
 
         {/* xử lý khi người dùng nhập link không hợp lệ */}
         {/* Cách 1: tạo 1 trang 404 và link tới trang đó, path='*' */}

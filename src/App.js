@@ -23,7 +23,10 @@ function App() {
                 <NavLink style={({ isActive }) => isActive ? { borderRadius: '5px' } : {}} className={({ isActive }) => isActive ? 'nav-link bg-light text-dark' : 'nav-link'} to="/contact">Contact</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/reactform">ReactForm</NavLink>
+                <NavLink style={({ isActive }) => isActive ? { borderRadius: '5px' } : {}} className={({ isActive }) => isActive ? 'nav-link bg-light text-dark' : 'nav-link'} to="/reactform">ReactForm</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className={({ isActive }) => isActive ? 'nav-link bg-light text-dark' : 'nav-link'} to="/lifecycle">Lifecycle</NavLink>
               </li>
             </ul>
             <form className="d-flex my-2 my-lg-0">
