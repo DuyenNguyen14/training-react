@@ -1,3 +1,4 @@
+import { prettyDOM } from '@testing-library/react';
 import React, { Component } from 'react'
 import ChildComponent from './ChildComponent';
 
@@ -17,7 +18,10 @@ export default class ReactLifeCycle extends Component {
         super(props);
         this.state = {
             number: 1,
-            like: 1
+            like: 1,
+            objectNumber: {
+                number: 1
+            }
         }
         console.log('constructor');
     }
@@ -47,8 +51,13 @@ export default class ReactLifeCycle extends Component {
             <div className='container'>
                 <h3>Number: {this.state.number} </h3>
                 <button className="btn btn-success mb-3" onClick={() => {
+                    let objectNumber = { ...this.state.objectNumber }; // dùng spread operator để clone object ra
+                    objectNumber.number += 1;
+
                     this.setState({
-                        number: this.state.number + 1
+                        // number: this.state.number + 1
+
+                        objectNumber: objectNumber
                     })
                 }}>+</button>
 
@@ -59,7 +68,9 @@ export default class ReactLifeCycle extends Component {
                     })
                 }}>Like</button>
 
-                <ChildComponent number={this.state.number} />
+                {/* Xét 2 trường hợp: 1) truyền props là primitive value, và 2) truyền props là reference value để xét chức năng của PureComponent ở Child */}
+                {/* <ChildComponent number={this.state.number} /> */}
+                <ChildComponent obNumber={this.state.objectNumber} />
             </div>
         )
     }
@@ -68,5 +79,13 @@ export default class ReactLifeCycle extends Component {
     componentDidMount() { // chỉ chạy 1 lần khi component load lần đầu tiên
         console.log('componentdidmount');
         //  tương tự window.onload (gọi api, lấy dữ liệu từ localStorage)
+    };
+
+    componentDidUpdate(prevProps, prevState) {
+        // Handle sau khi component gọi render
+        // hàm này chạy sau mỗi lần setState lại
+        // Tuy nhiên hạn chế setState tại đây --> setState phải có lệnh if
+        console.log('prevProps', prevProps);
+        console.log('prevState', prevState);
     }
 }
