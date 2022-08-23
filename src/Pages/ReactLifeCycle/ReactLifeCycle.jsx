@@ -19,9 +19,12 @@ export default class ReactLifeCycle extends Component {
         this.state = {
             number: 1,
             like: 1,
+
             objectNumber: {
                 number: 1
-            }
+            },
+
+            count: 60
         }
         console.log('constructor');
     }
@@ -49,7 +52,7 @@ export default class ReactLifeCycle extends Component {
 
         return (
             <div className='container'>
-                <h3>Number: {this.state.number} </h3>
+                <h3>Number: {this.state.objectNumber.number} </h3>
                 <button className="btn btn-success mb-3" onClick={() => {
                     let objectNumber = { ...this.state.objectNumber }; // dùng spread operator để clone object ra
                     objectNumber.number += 1;
@@ -71,20 +74,39 @@ export default class ReactLifeCycle extends Component {
                 {/* Xét 2 trường hợp: 1) truyền props là primitive value, và 2) truyền props là reference value để xét chức năng của PureComponent ở Child */}
                 {/* <ChildComponent number={this.state.number} /> */}
                 <ChildComponent obNumber={this.state.objectNumber} />
+
+                {/* set điều kiện cho hàm chạy ngầm */}
+                {/* {this.state.like < 3 ? <h3>Count: {this.state.count}</h3> : ''} */}
+                <h3>Count: {this.state.count}</h3>
             </div>
         )
     }
 
     // Hàm thực thi sau render
+    timeout = {};
+
     componentDidMount() { // chỉ chạy 1 lần khi component load lần đầu tiên
         console.log('componentdidmount');
         //  tương tự window.onload (gọi api, lấy dữ liệu từ localStorage)
+
+        // setInterval chạy ngầm, gọi hàm bên trong sau mỗi 1000ms
+        this.timeout = setInterval(() => {
+            this.setState({
+                count: this.state.count - 1
+            });
+            console.log(this.state.count);
+        }, 1000);
     };
 
+    componentWillUnmount() {
+        // Trước khi component mất khỏi giao diện => clear tất cả script chạy ngầm
+        clearInterval(this.timeout);
+    }
+
     componentDidUpdate(prevProps, prevState) {
-        // Handle sau khi component gọi render
         // hàm này chạy sau mỗi lần setState lại
-        // Tuy nhiên hạn chế setState tại đây --> setState phải có lệnh if
+        // Handle sau khi component gọi render
+        // Tuy nhiên hạn chế setState tại đây (vì sẽ diễn ra quá trình updating, render và hàm componentDidUpdate sẽ được gọi dẫn tới vòng lặp vô tận) --> setState phải có lệnh if
         console.log('prevProps', prevProps);
         console.log('prevState', prevState);
     }

@@ -39,7 +39,7 @@ export default class ChildComponent extends PureComponent { // PureComponent là
         return (
             <div className='container'>
                 <div className="p-5 display-4 bg-dark text-white">
-                    {/* Xét 2 trường hợp: 1) truyền props là primitive value, và 2) truyền props là reference value để xét chức năng của PureComponent ở Child */}
+                    {/* Xét 2 trường hợp: 1) nhận props là primitive value, và 2) nhận props là reference value để xét chức năng của PureComponent ở Child */}
                     {/* <h4>Child Component: {this.props.number}</h4> */}
                     <h4>Child Component: {this.props.obNumber.number}</h4>
                 </div>
