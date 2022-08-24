@@ -70,6 +70,7 @@ export default class FormProd extends Component {
   };
 
   // Can thiệp vào quá trình render props của updating
+  // Cách 1
   static getDerivedStateFromProps(newProps, currentState) {
     console.log(currentState);
     // if (newProps.productEdit.id !== currentState.productInfo.if) {
@@ -80,6 +81,14 @@ export default class FormProd extends Component {
     // }
     // return null;
   }
+
+  // Cách 2: lifecycle 16.0
+  // componentWillReceiveProps(newProps) {
+  //   // chỉ chạy khi props thay đổi
+  //   this.setState({
+  //     productInfo: newProps.productEdit,
+  //   });
+  // }
 
   render() {
     let { id, name, price, description, img, type } = this.state.productInfo;
@@ -176,7 +185,13 @@ export default class FormProd extends Component {
         </div>
         <div className="card-footer">
           <button className="btn btn-success">Create</button>
-          <button type="button" className="btn btn-primary ms-2">
+          <button
+            type="button"
+            className="btn btn-primary ms-2"
+            onClick={() => {
+              this.props.updateProduct({ ...this.state.productInfo });
+            }}
+          >
             Update
           </button>
         </div>

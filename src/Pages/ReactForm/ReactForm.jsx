@@ -40,6 +40,23 @@ export default class ReactForm extends Component {
     });
   };
 
+  updateProduct = (prodUpdate) => {
+    console.log(prodUpdate);
+    let prod = this.state.arrProduct.find(p => p.id == prodUpdate.id);
+    if (prod) {
+      prod.name = prodUpdate.name;
+      prod.price = prodUpdate.price;
+      prod.img = prodUpdate.img;
+      prod.description = prodUpdate.description;
+      prod.type = prodUpdate.type;
+    }
+
+    // set lại state
+    this.setState({
+      arrProduct: this.state.arrProduct,
+    });
+  };
+
   // hàm xử lý state phải nằm ở component chứa state
   addProduct = (newProd) => {
     console.log(newProd);
@@ -94,6 +111,7 @@ export default class ReactForm extends Component {
         <FormProd
           addProduct={this.addProduct}
           productEdit={this.state.productEdit}
+          updateProduct={this.updateProduct}
         />
         <TableProduct
           arrProduct={this.state.arrProduct}
