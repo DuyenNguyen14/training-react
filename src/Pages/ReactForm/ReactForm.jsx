@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FormProd from "./FormProd";
 import TableProduct from "./TableProduct";
+import axios from "axios";
 
 export default class ReactForm extends Component {
   // chứa state của table
@@ -42,7 +43,7 @@ export default class ReactForm extends Component {
 
   updateProduct = (prodUpdate) => {
     console.log(prodUpdate);
-    let prod = this.state.arrProduct.find(p => p.id == prodUpdate.id);
+    let prod = this.state.arrProduct.find((p) => p.id == prodUpdate.id);
     if (prod) {
       prod.name = prodUpdate.name;
       prod.price = prodUpdate.price;
@@ -124,6 +125,23 @@ export default class ReactForm extends Component {
   }
 
   componentDidMount() {
-    this.getLocalStorage();
+    // this.setState({
+    //   arrProduct: this.getLocalStorage()
+    // });
+
+    let promise = axios({
+      url: "https://svcy.myclass.vn/api/Product/GetAll",
+      method: "GET",
+    });
+
+    promise.then((result) => {
+      this.setState({
+        arrProduct: result.data,
+      });
+    });
+
+    promise.catch((error) => {
+      console.log(error);
+    });
   }
 }
