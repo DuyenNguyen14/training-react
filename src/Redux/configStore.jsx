@@ -1,4 +1,5 @@
 import { createStore, combineReducers } from "redux";
+import burgerReducer from "./reducers/burgerReducer";
 import { commentReducer } from "./reducers/commentReducer";
 import { imgCarReducer } from "./reducers/imgCarReducer";
 import { numberReducer } from "./reducers/numberReducer";
@@ -8,6 +9,7 @@ const rootReducer = combineReducers({
   number: numberReducer,
   imgCar: imgCarReducer,
   commentReducer: commentReducer,
+  burgerReducer: burgerReducer,
 });
 
 export const store = createStore(

@@ -104,6 +104,9 @@ function App() {
                   <NavLink className="dropdown-item" to="/demoformcomment">
                     Demo Form Comment
                   </NavLink>
+                  <NavLink className="dropdown-item" to="/demoburger">
+                    Demo Burger
+                  </NavLink>
                 </div>
               </li>
             </ul>

@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "./index.css";
+// import "./index.css";
+import "./assets/scss/styles.scss";
 
 // Cấu hình react router dom
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"; // import 3 thẻ của react-router-dom
@@ -18,6 +19,7 @@ import { store } from "./Redux/configStore";
 import DemoTangGiamSL from "./Pages/DemoRedux/DemoTangGiamSL/DemoTangGiamSL";
 import DemoChonXe from "./Pages/DemoRedux/DemoChonXe/DemoChonXe";
 import DemoFormComment from "./Pages/DemoRedux/DemoFormComment/DemoFormComment";
+import DemoBurger from "./Pages/DemoRedux/DemoBurger/DemoBurger";
 
 // jsx: javascript extension
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -42,6 +44,7 @@ root.render(
           <Route path="demonumber" element={<DemoTangGiamSL />}></Route>
           <Route path="demochonxe" element={<DemoChonXe />}></Route>
           <Route path="demoformcomment" element={<DemoFormComment />}></Route>
+          <Route path="demoburger" element={<DemoBurger />}></Route>
 
           {/* xử lý khi người dùng nhập link không hợp lệ */}
           {/* Cách 1: tạo 1 trang 404 và link tới trang đó, path='*' */}
