@@ -9,15 +9,19 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UseStateDemo from "./pages/HooksDemo/UseStateDemo/UseStateDemo";
 import UseEffectDemo from "./pages/HooksDemo/UseEffectDemo/UseEffectDemo";
 import UseCallBackDemo from "./pages/HooksDemo/UseCallBackDemo/UseCallBackDemo";
+import UseMemoDemo from "./pages/HooksDemo/UseMemoDemo/UseMemoDemo";
+import UseRefDemo from "./pages/HooksDemo/UseRefDemo/UseRefDemo";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Routes>
       <Route path="" element={<App />}>
-        <Route path="usestatedemo" element={<UseStateDemo />} />
-        <Route path="useeffectdemo" element={<UseEffectDemo />} />
-        <Route path="usecallbackdemo" element={<UseCallBackDemo />} />
+        <Route path="usestate" element={<UseStateDemo />} />
+        <Route path="useeffect" element={<UseEffectDemo />} />
+        <Route path="usecallback" element={<UseCallBackDemo />} />
+        <Route path="usememo" element={<UseMemoDemo />} />
+        <Route path="useref" element={<UseRefDemo />} />
       </Route>
     </Routes>
   </BrowserRouter>

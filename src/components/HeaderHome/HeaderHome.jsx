@@ -41,14 +41,20 @@ export default function HeaderHome(props) {
                 Hooks
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdownId">
-                <NavLink className="dropdown-item" to="/usestatedemo">
-                  UseStateDemo
+                <NavLink className="dropdown-item" to="/usestate">
+                  UseState
                 </NavLink>
-                <NavLink className="dropdown-item" to="/useeffectdemo">
-                  UseEffectDemo
+                <NavLink className="dropdown-item" to="/useeffect">
+                  UseEffect
                 </NavLink>
-                <NavLink className="dropdown-item" to="/usecallbackdemo">
-                  UseCallBackDemo
+                <NavLink className="dropdown-item" to="/usecallback">
+                  UseCallBack
+                </NavLink>
+                <NavLink className="dropdown-item" to="/usememo">
+                  UseMemo
+                </NavLink>
+                <NavLink className="dropdown-item" to="/useref">
+                  UseRef
                 </NavLink>
               </div>
             </li>
