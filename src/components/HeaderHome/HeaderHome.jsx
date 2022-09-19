@@ -75,6 +75,23 @@ export default function HeaderHome(props) {
                 </NavLink>
               </div>
             </li>
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="dropdownId"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Router Hooks
+              </a>
+              <div className="dropdown-menu" aria-labelledby="dropdownId">
+                <NavLink className="dropdown-item" to="/reactform">
+                  Demo navigate
+                </NavLink>
+              </div>
+            </li>
           </ul>
         </div>
       </div>

@@ -16,10 +16,15 @@ export default function DemoNumber(props) {
       <button
         className="btn btn-success"
         onClick={() => {
+          // tự tạo action để dispatch reducer slice
+          // Cách 1: tự tạo ra action
           const action = {
-            type: "CHANGE_NUMBER",
+            type: "numberReducer/changeNumber",
             payload: number + 1,
           };
+          // Cách 2: action creator
+          // const action = changeNumber(number + 1);
+
           dispatch(action);
         }}
       >

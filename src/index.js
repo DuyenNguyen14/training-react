@@ -16,6 +16,8 @@ import UseRefDemo from "./pages/HooksDemo/UseRefDemo/UseRefDemo";
 import { Provider } from "react-redux";
 import { store } from "./redux/configStore";
 import DemoNumber from "./pages/HooksDemo/UseRedux/DemoNumber/DemoNumber";
+import ReactForm from "./pages/HooksRoutes/ReactForm/ReactForm";
+import Profile from "./pages/HooksRoutes/ReactForm/Profile";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -29,6 +31,8 @@ root.render(
           <Route path="usememo" element={<UseMemoDemo />} />
           <Route path="useref" element={<UseRefDemo />} />
           <Route path="reduxnumber" element={<DemoNumber />} />
+          <Route path="reactform" element={<ReactForm />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>

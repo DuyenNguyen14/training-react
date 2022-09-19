@@ -1,16 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import numberReducer from "./reducers/numberReducer";
 
 export const store = configureStore({
   reducer: {
-    number: (state = 1, action) => {
-      switch (action.type) {
-        case "CHANGE_NUMBER": {
-          state = action.payload;
-          return state;
-        }
-        default:
-          return state;
-      }
-    },
+    number: numberReducer,
   },
 });
