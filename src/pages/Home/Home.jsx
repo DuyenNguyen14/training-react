@@ -1,7 +1,55 @@
-import React from 'react'
+import axios from "axios";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
-export default function Home() {
+export default function Home(props) {
+  const [arrProduct, setArrProduct] = useState([]);
+
+  const getApiProduct = async () => {
+    try {
+      let result = await axios({
+        url: "https://shop.cyberlearn.vn/api/Product",
+        method: "GET",
+      });
+      console.log("result", result.data.content);
+      // Sau khi lấy kết quả từ api về đưa vào state arrProduct
+      setArrProduct(result.data.content);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const renderProduct = () => {
+    return arrProduct.map((item, index) => {
+      return (
+        <div key={index} className="col-3 mt-3">
+          <div className="card">
+            <img src={item.image} alt="..." />
+            <div className="card-body bg-dark text-light">
+              <h5>{item.name}</h5>
+              <p>{item.price}$</p>
+              {/* <button className="btn btn-success">View detail</button> */}
+              <NavLink to={`/detail/${item.id}`} className="btn btn-success">
+                View detail
+              </NavLink>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  };
+
+  useEffect(() => {
+    // Sau khi giao diện load xong thì gọi api thực thi
+    getApiProduct();
+  }, []);
+
   return (
-    <div>Home</div>
-  )
+    <div className="container py-5">
+      <h3>Shoes app</h3>
+      <div className="row">{renderProduct()}</div>
+    </div>
+  );
 }

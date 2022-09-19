@@ -18,6 +18,8 @@ import { store } from "./redux/configStore";
 import DemoNumber from "./pages/HooksDemo/UseRedux/DemoNumber/DemoNumber";
 import ReactForm from "./pages/HooksRoutes/ReactForm/ReactForm";
 import Profile from "./pages/HooksRoutes/ReactForm/Profile";
+import Home from "./pages/Home/Home";
+import Detail from "./pages/Detail/Detail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -25,6 +27,10 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="detail">
+            <Route path=":id" element={<Detail />}></Route>
+          </Route>
           <Route path="usestate" element={<UseStateDemo />} />
           <Route path="useeffect" element={<UseEffectDemo />} />
           <Route path="usecallback" element={<UseCallBackDemo />} />
