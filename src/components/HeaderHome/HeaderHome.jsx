@@ -25,6 +25,11 @@ export default function HeaderHome(props) {
                 Home
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/login">
+                Login
+              </NavLink>
+            </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -54,6 +59,9 @@ export default function HeaderHome(props) {
                 </NavLink>
                 <NavLink className="dropdown-item" to="/customhook">
                   customHook (useRoute)
+                </NavLink>
+                <NavLink className="dropdown-item" to="/animation">
+                  customHook - animation (useSpring)
                 </NavLink>
               </div>
             </li>

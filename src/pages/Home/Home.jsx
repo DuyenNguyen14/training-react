@@ -2,23 +2,54 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import {
+  getProductApi,
+  setArrProductAction,
+} from "../../redux/reducers/productReducer";
 
 export default function Home(props) {
-  const [arrProduct, setArrProduct] = useState([]);
+  // const [arrProduct, setArrProduct] = useState([]);
+  const { arrProduct } = useSelector((state) => state.productReducer);
+
+  const dispatch = useDispatch();
 
   const getApiProduct = async () => {
-    try {
-      let result = await axios({
-        url: "https://shop.cyberlearn.vn/api/Product",
-        method: "GET",
-      });
-      console.log("result", result.data.content);
-      // Sau khi lấy kết quả từ api về đưa vào state arrProduct
-      setArrProduct(result.data.content);
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   let result = await axios({
+    //     url: "https://shop.cyberlearn.vn/api/Product",
+    //     method: "GET",
+    //   });
+    //   console.log("result", result.data.content);
+    //   // Sau khi lấy kết quả từ api về đưa vào state arrProduct
+    //   // setArrProduct(result.data.content);
+
+    //   // dispath lên redux
+    //   const action = setArrProductAction(result.data.content);
+    //   dispatch(action);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+
+    /*
+      action có 2 dạng:
+        + action dạng 1:
+          action = {
+            type: action_name,
+            payload: data
+          }
+
+        + action dạng 2 (thunk):
+          action = (dispatch2, getState) => {
+            // logic xử lý ở đây sau đó có dữ liệu sẽ dùng tham số dispatch2 để đưa redux hoặc thực hiện tiếp 1 logic khác
+
+          }
+    */
+
+    const actionLoai2 = getProductApi;
+    // dispatch action thunk
+    dispatch(actionLoai2);
   };
 
   const renderProduct = () => {
