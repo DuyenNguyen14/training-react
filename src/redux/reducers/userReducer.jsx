@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import {
   ACCESS_TOKEN,
+  getStore,
   getStoreJSON,
   setCookie,
   setStore,
@@ -61,5 +62,23 @@ export const signinApi = (userLogin) => {
 
 // call api getProfile
 export const getProfileApi = () => {
-    
-}
+  return async (dispatch) => {
+    try {
+      let result = await axios({
+        url: "https://shop.cyberlearn.vn/api/Users/getProfile",
+        method: "POST",
+        // data: 'Dữ liệu người dùng nhập, chọn, thay đổi,...',
+        headers: {
+          Authorization: `Bearer ${getStore(ACCESS_TOKEN)}`,
+        },
+      });
+      console.log("result", result.data.content);
+
+      // Tạo ra actioncreator => dispatch lên reducer
+      const action = setUserLoginAction(result.data.content);
+      dispatch(action);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
