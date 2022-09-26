@@ -1,8 +1,12 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import React from "react";
+import { signinApi } from "../../redux/reducers/userReducer";
+import { useDispatch } from "react-redux";
 
 export default function Login() {
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -19,7 +23,9 @@ export default function Login() {
       // .matches(/cybersoft/, 'Password must include "cybersoft"!'),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      //   console.log(values);
+      const action = signinApi(values);
+      dispatch(action);
     },
   });
   return (
