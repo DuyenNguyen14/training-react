@@ -12,7 +12,7 @@ import UseCallBackDemo from "./pages/HooksDemo/UseCallBackDemo/UseCallBackDemo";
 import UseMemoDemo from "./pages/HooksDemo/UseMemoDemo/UseMemoDemo";
 import UseRefDemo from "./pages/HooksDemo/UseRefDemo/UseRefDemo";
 
-// setup redux
+// setup redux-toolkit
 import { Provider } from "react-redux";
 import { store } from "./redux/configStore";
 import DemoNumber from "./pages/HooksDemo/UseRedux/DemoNumber/DemoNumber";
@@ -25,10 +25,15 @@ import DemoUseRoute from "./pages/DemoUseRoute/DemoUseRoute";
 import DemoUseSpring from "./pages/DemoUseSpring(animation)/DemoUseSpring";
 import Login from "./pages/Login/Login";
 
+// Tạo ra 1 biến để quản lý chuyển hướng trang
+import { createBrowserHistory } from "history";
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+export const history = createBrowserHistory();
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <HistoryRouter history={history}>
       <Routes>
         <Route path="" element={<App />}>
           <Route index element={<Home />} />
@@ -49,7 +54,7 @@ root.render(
           <Route path="login" element={<Login />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   </Provider>
 );
 

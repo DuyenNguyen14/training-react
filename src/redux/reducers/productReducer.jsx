@@ -1,6 +1,7 @@
 // rxslice
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { http } from "../../util/config";
 
 const initialState = {
   arrProduct: [
@@ -42,10 +43,7 @@ export default productReducer.reducer;
 export const getProductApi = async (dispatch2) => {
   // xử lý logic api trả về kết quả
   try {
-    let result = await axios({
-      url: "https://shop.cyberlearn.vn/api/Product",
-      method: "GET",
-    });
+    let result = await http.get("/Product");
     console.log("result", result.data.content);
     // Sau khi lấy kết quả từ api về đưa vào state arrProduct
     // setArrProduct(result.data.content);

@@ -1,3 +1,6 @@
+import axios from "axios";
+import { history } from "../index";
+
 // function lưu và lấy dữ liệu từ localStorage/ cookie
 const configs = {
   // save to localStorage
@@ -42,6 +45,12 @@ const configs = {
     }
     return null;
   },
+  clearCookie: (name) => {
+    setCookie("", -1, name);
+  },
+  clearLocalStorage: (name) => {
+    localStorage.removeItem(name);
+  },
   ACCESS_TOKEN: "accessToken",
   USER_LOGIN: "userLogin",
 };
@@ -53,6 +62,63 @@ export const {
   setStoreJSON,
   setStore,
   getStore,
+  clearCookie,
+  clearLocalStorage,
   ACCESS_TOKEN,
   USER_LOGIN,
 } = configs;
+
+const TOKEN_CYBERSOFT =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAyOCIsIkhldEhhblN0cmluZyI6IjI1LzAyLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTY3NzI4MzIwMDAwMCIsIm5iZiI6MTY0Nzk2ODQwMCwiZXhwIjoxNjc3NDMwODAwfQ.wEdmkKpVZbDB4s4L_cmLwJ1O8le8Cc-VMgLZCI-HvLA";
+
+// Cấu hình interceptor (Cấu hình cho các request và response)
+export const http = axios.create({
+  baseURL: `https://shop.cyberlearn.vn/api`,
+  timeout: 6000, // thời gian thực thi request tối đa, nếu quá thời gian thì huỷ luôn
+});
+
+// Cấu hình request
+http.interceptors.request.use(
+  // cấu hình tất cả header add thêm thuộc tính Authorization
+  (configs) => {
+    configs.headers = {
+      ...configs.headers,
+      ["Authorization"]: `Bearer ${getStore(ACCESS_TOKEN)}`,
+      ["TokenCybersoft"]: TOKEN_CYBERSOFT,
+    };
+    return configs;
+  },
+  (err) => {
+    return Promise.reject(err);
+  }
+);
+
+/*
+  statuscode: mã kết quả trả về do backend quy định
+  200 (Success): kết quả trả về thành công;
+  201 (Created): tạo giá trị thành công trên server (thường dùng 200);
+  400 (Bad Request): Không tồn tại đường dẫn;
+  404 (Not Found): Không tìm thấy dữ liệu;
+  401 (Unauthorized): Không có quyền truy cập vào api;
+  403 (Forbidden): Token chưa đủ quyền truy cập
+  500 (Error in server): Lỗi xảy ra trên server (Nguyên nhân do front-end hoặc back-end tuỳ tình huống);
+*/
+
+http.interceptors.response.use(
+  (response) => {
+    console.log(response);
+    return response;
+  },
+  (err) => {
+    console.log(err.response.status);
+    if (err.response.status === 400 || err.response.status === 404) {
+      history.push("/");
+      return Promise.reject(err);
+    }
+    if (err.response.status === 401 || err.response.status === 403) {
+      alert("Token không hợp lệ! Vui lòng đăng nhập lại!");
+      history.push("/login");
+      return Promise.reject(err);
+    }
+  }
+);

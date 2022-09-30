@@ -15,7 +15,7 @@ export default function Profile(props) {
 
   const renderOrderHistory = () => {
     // ?: toán tử optional chaining: nếu obj có thuộc tính đó thì xử lý, nếu không thì bỏ qua
-    return userLogin.ordersHistory?.map((order, index) => {
+    return userLogin?.ordersHistory?.map((order, index) => {
       return (
         <div className="orderDetail" key={index}>
           <h3>Order {moment(order.date).format("DD/MM/YYYY hh:mm:ss A")}</h3>
@@ -58,9 +58,9 @@ export default function Profile(props) {
       <div className="d-flex">
         <div className="w-25">
           <div className="profile">
-            <img src={userLogin.avatar} alt="avatar" height={200} />
-            <div>Name: {userLogin.name}</div>
-            <div>Email: {userLogin.email}</div>
+            <img src={userLogin?.avatar} alt="avatar" height={200} />
+            <div>Name: {userLogin?.name}</div>
+            <div>Email: {userLogin?.email}</div>
           </div>
         </div>
         <div className="w-75">
