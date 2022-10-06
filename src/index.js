@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 // Cấu hình BrowserRouter
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import UseStateDemo from "./pages/HooksDemo/UseStateDemo/UseStateDemo";
 import UseEffectDemo from "./pages/HooksDemo/UseEffectDemo/UseEffectDemo";
 import UseCallBackDemo from "./pages/HooksDemo/UseCallBackDemo/UseCallBackDemo";
@@ -28,6 +28,12 @@ import Login from "./pages/Login/Login";
 // Tạo ra 1 biến để quản lý chuyển hướng trang
 import { createBrowserHistory } from "history";
 import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+import DemoHoc from "./pages/DemoHoc/DemoHoc";
+import AdminTemplate from "./templates/AdminTemplate";
+import HomeMobile from "./pages/Home/HomeMobile";
+import ResponsiveItem from "./HOC/ResponsiveItem";
+import HomeTemplate from "./templates/HomeTemplate";
+import HomeTemplateMobile from "./templates/HomeTemplateMobile";
 export const history = createBrowserHistory();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -35,8 +41,21 @@ root.render(
   <Provider store={store}>
     <HistoryRouter history={history}>
       <Routes>
-        <Route path="" element={<App />}>
-          <Route index element={<Home />} />
+        <Route
+          path=""
+          element={
+            <ResponsiveItem
+              component={HomeTemplate}
+              componentMobile={HomeTemplateMobile}
+            />
+          }
+        >
+          <Route
+            index
+            element={
+              <ResponsiveItem component={Home} componentMobile={HomeMobile} />
+            }
+          />
           <Route path="detail">
             <Route path=":id" element={<Detail />}></Route>
           </Route>
@@ -52,6 +71,11 @@ root.render(
           <Route path="customhook" element={<DemoUseRoute />} />
           <Route path="animation" element={<DemoUseSpring />} />
           <Route path="login" element={<Login />} />
+
+          <Route path="demohoc" element={<DemoHoc />} />
+          <Route path="admin" element={<AdminTemplate />} />
+
+          <Route path="*" element={<Navigate to={"/"} />} />
         </Route>
       </Routes>
     </HistoryRouter>

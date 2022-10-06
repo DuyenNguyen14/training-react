@@ -23,11 +23,12 @@ export default function Login() {
       // .matches(/cybersoft/, 'Password must include "cybersoft"!'),
     }),
     onSubmit: (values) => {
-      //   console.log(values);
-      const action = signinApi(values);
-      dispatch(action);
+      console.log(values);
+      // const action = signinApi(values);
+      // dispatch(action);
     },
   });
+
   return (
     <form className="container p-5" onSubmit={formik.handleSubmit}>
       <h3>Login</h3>

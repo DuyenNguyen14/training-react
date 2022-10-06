@@ -137,6 +137,11 @@ export default function HeaderHome(props) {
                 </NavLink>
               </div>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/demohoc">
+                Demo HOC
+              </NavLink>
+            </li>
           </ul>
           <form
             className="d-flex my-2 my-lg-0"
